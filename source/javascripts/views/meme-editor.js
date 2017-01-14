@@ -163,23 +163,24 @@ MEME.MemeEditorView = Backbone.View.extend({
   onSizeTwitterChange: function(evt){
     this.model.set('width', 1024);
     this.model.set('height', 512);
+    this.model.set('headlineText',"Write Twitter text here."); 
     evt.preventDefault();
   },
 
   onSizeFacebookPostChange: function(evt){
-    this.model.set('width', 940);
-    this.model.set('height', 788);
+    this.model.set('width', 1200);
+    this.model.set('height', 900);
     evt.preventDefault();
   },
 
   onSizeFacebookAdd: function(evt){
     this.model.set('width', 1200);
-    this.model.set('height', 627);
+    this.model.set('height', 628);
     evt.preventDefault();
   },
 
   onSizeFacebookCover: function(evt){
-    this.model.set('width', 851);
+    this.model.set('width', 828);
     this.model.set('height', 315);
     evt.preventDefault();
   },
