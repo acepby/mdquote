@@ -4,12 +4,24 @@ form {
     font-weight: 700;
     margin: 0 0 0.25em;
   }
-
+  button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  button {border-radius:5px;}
   select,
   textarea,
   input[type="text"],
   input[type="range"],
-  button,
   .checkbox-group {
     margin-bottom: 1.5em;
     width: 100%;

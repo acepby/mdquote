@@ -86,7 +86,8 @@ MEME.MemeEditorView = Backbone.View.extend({
     'click #size2': 'onSizeFacebookPostChange',
     'click #size3': 'onSizeFacebookAdd',
     'click #size4': 'onSizeFacebookCover',
-    'click #size5': 'onSizeInstagram'
+    'click #size5': 'onSizeInstagram',
+    'click #size6': 'onSizeTelegram'
   },
 
   onCredit: function() {
@@ -188,6 +189,12 @@ MEME.MemeEditorView = Backbone.View.extend({
   onSizeInstagram: function(evt){
     this.model.set('width', 612);
     this.model.set('height', 612);
+    evt.preventDefault();
+  },
+ onSizeTelegram: function(evt){
+    this.model.set('width',512);
+    this.model.set('height',512);
+    this.model.set('headlineText',"Write telegram text here");
     evt.preventDefault();
   }
   
