@@ -66,6 +66,7 @@ MEME.MemeEditorView = Backbone.View.extend({
     this.$('#text-align').val(d.textAlign);
     this.$('#text-shadow').prop('checked', d.textShadow);
     this.$('#overlay').find('[value="'+d.overlayColor+'"]').prop('checked', true);
+    this.$('#fbAkun').val(d.fbAkun);
   },
 
   events: {
