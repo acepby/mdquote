@@ -130,7 +130,7 @@ MEME.MemeCanvasView = Backbone.View.extend({
       ctx.textAlign = 'left';
       ctx.fillStyle = d.fontColor;
       ctx.font = 'normal '+ d.creditSize +'pt '+ d.fontFamily;
-      ctx.fillText(d.creditText, padding, d.height - padding);
+      ctx.fillText(d.creditText, padding, d.height - padding+20);
     }
 
     function renderWatermark(ctx) {
@@ -155,11 +155,20 @@ MEME.MemeCanvasView = Backbone.View.extend({
       }
     }
 
+    function renderFbAkun(ctx) {
+      ctx.textBaseline = 'bottom';
+      ctx.textAlign = 'left';
+      ctx.fillStyle = d.fontColor;
+      ctx.font = 'normal '+ d.fbAkunSize +'pt '+ d.fontFamily;
+      ctx.fillText('\uf082 '+d.fbAkun, padding, d.height - padding);
+    }
+
     renderBackground(ctx);
     renderOverlay(ctx);
     renderHeadline(ctx);
     renderCredit(ctx);
     renderWatermark(ctx);
+    renderFbAkun(ctx);
 
     var data = this.canvas.toDataURL(); //.replace('image/png', 'image/octet-stream');
     this.$('#meme-download').attr({

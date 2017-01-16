@@ -8,6 +8,7 @@ form {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
+    padding-top:10px;
     padding: 8px 10px;
     text-align: center;
     text-decoration: none;
@@ -59,4 +60,25 @@ form {
     margin: 0 auto;
     padding: 0;
   }
+
+.medsos {
+  position: relative;
+  color: #aaa;
+  font-size: 16px;
+}
+  .medsos input {
+  	width: 250px;
+  	height: 32px;
+
+  	background: #fcfcfc;
+  	border: 1px solid #aaa;
+  	border-radius: 5px;
+  	box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+	}
+  .medsos input {text-indent:32px;}
+  .medsos .fa {
+		position:absolute;
+		top: 1px;
+		left: 5px;
+		}	
 }

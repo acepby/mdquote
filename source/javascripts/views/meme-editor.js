@@ -88,7 +88,8 @@ MEME.MemeEditorView = Backbone.View.extend({
     'click #size3': 'onSizeFacebookAdd',
     'click #size4': 'onSizeFacebookCover',
     'click #size5': 'onSizeInstagram',
-    'click #size6': 'onSizeTelegram'
+    'click #size6': 'onSizeTelegram',
+    'input #fbAkun': 'onFbAkun'
   },
 
   onCredit: function() {
@@ -197,6 +198,10 @@ MEME.MemeEditorView = Backbone.View.extend({
     this.model.set('height',512);
     this.model.set('headlineText',"Write telegram text here");
     evt.preventDefault();
-  }
+  },
+  
+ onFbAkun: function() {
+    this.model.set('fbAkun', this.$('#fbAkun').val());
+  },
   
 });
