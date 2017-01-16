@@ -31,7 +31,9 @@ MEME.MemeModel = Backbone.Model.extend({
     watermarkOpts: [],
     width: 755,
     fbAkun:'fb',
-    fbAkunSize:12
+    fbAkunSize:12,
+    twitAkun:'',
+    instaAkun:''
   },
 
   // Initialize with custom image members used for background and watermark:

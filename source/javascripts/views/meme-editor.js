@@ -67,6 +67,8 @@ MEME.MemeEditorView = Backbone.View.extend({
     this.$('#text-shadow').prop('checked', d.textShadow);
     this.$('#overlay').find('[value="'+d.overlayColor+'"]').prop('checked', true);
     this.$('#fbAkun').val(d.fbAkun);
+    this.$('#twitAkun').val(d.twitAkun);
+    this.$('#instaAkun').val(d.instaAkun);
   },
 
   events: {
@@ -89,7 +91,9 @@ MEME.MemeEditorView = Backbone.View.extend({
     'click #size4': 'onSizeFacebookCover',
     'click #size5': 'onSizeInstagram',
     'click #size6': 'onSizeTelegram',
-    'input #fbAkun': 'onFbAkun'
+    'input #fbAkun': 'onFbAkun',
+    'input #twitAkun':'onTwitAkun',
+    'input #instaAkun':'onInstaAkun'
   },
 
   onCredit: function() {
@@ -203,5 +207,11 @@ MEME.MemeEditorView = Backbone.View.extend({
  onFbAkun: function() {
     this.model.set('fbAkun', this.$('#fbAkun').val());
   },
+ onTwitAkun:function(){
+    this.model.set('twitAkun', this.$('#twitAkun').val());
+  },
+ onInstaAkun:function(){
+    this.model.set('instaAkun', this.$('#instaAkun').val());
+  }
   
 });

@@ -154,13 +154,28 @@ MEME.MemeCanvasView = Backbone.View.extend({
         ctx.globalAlpha = 1;
       }
     }
-
+   
+   if(d.fbAkun!=''){
+	var fbLogo='\uf082 ';
+	}else{
+            var fbLogo='';
+       } 
+   if(d.twitAkun!=''){
+        var twitLogo=' \uf081 ';
+        }else{
+            var twitLogo='';
+        }
+   if(d.instaAkun!=''){
+        var instaLogo=' \uf16d ';
+        }else{
+             var instaLogo='';
+        }
     function renderFbAkun(ctx) {
       ctx.textBaseline = 'bottom';
       ctx.textAlign = 'left';
       ctx.fillStyle = d.fontColor;
       ctx.font = 'normal '+ d.fbAkunSize +'pt '+ d.fontFamily;
-      ctx.fillText('\uf082 '+d.fbAkun, padding, d.height - padding);
+      ctx.fillText(fbLogo +d.fbAkun+twitLogo+d.twitAkun+instaLogo+d.instaAkun, padding, d.height - padding);
     }
 
     renderBackground(ctx);
