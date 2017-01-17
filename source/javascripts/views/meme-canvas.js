@@ -38,12 +38,12 @@ MEME.MemeCanvasView = Backbone.View.extend({
     var d = this.model.toJSON();
     var ctx = this.canvas.getContext('2d');
     var padding = Math.round(d.width * d.paddingRatio);
-
+   
     // Reset canvas display:
     this.canvas.width = d.width;
     this.canvas.height = d.height;
     ctx.clearRect(0, 0, d.width, d.height);
-
+   
     function renderBackground(ctx) {
       // Base height and width:
       var bh = m.background.height;
@@ -175,7 +175,7 @@ MEME.MemeCanvasView = Backbone.View.extend({
       ctx.textAlign = 'left';
       ctx.fillStyle = d.fontColor;
       ctx.font = 'normal '+ d.fbAkunSize +'pt '+ d.fontFamily;
-      ctx.fillText(fbLogo +d.fbAkun+twitLogo+d.twitAkun+instaLogo+d.instaAkun, padding, d.height - padding);
+      ctx.fillText(fbLogo+d.fbAkun+twitLogo+d.twitAkun+instaLogo+d.instaAkun, padding*d.medsosHorizontal, d.height - padding*d.medsosVertical);
     }
 
     renderBackground(ctx);

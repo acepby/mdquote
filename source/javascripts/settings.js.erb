@@ -7,6 +7,8 @@ var MEME_SETTINGS = {
   fbAkun: '',
   twitAkun:'',
   instaAkun:'',
+  medsosHorizontal:1.2,
+  medsosVertical:1.2,
   // Universal font family for texts:
   // Note that you'll need to included quoted font names as you would in CSS, ie: '"Knockout 28 B"'.
   fontFamily: 'Helvetica Neue',
@@ -58,7 +60,8 @@ var MEME_SETTINGS = {
   // Otherwise, just leave "data" attributes blank and allow images to load from your server.
   watermarkOpts: [
     {text: 'Vox', value: '<%= image_path("vox.png") %>', data: '<%= asset_data_uri("vox.png") %>'},
-    {text: 'The Verge', value: '<%= image_path("theverge.png") %>', data: ''}
+    {text: 'The Verge', value: '<%= image_path("theverge.png") %>', data: ''},
+    {text:'griyapena.id',value:'<%=image_path("griyapena.png") %>', data: ''}
   ],
 
   width: 755 // Canvas rendering width.

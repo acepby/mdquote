@@ -66,9 +66,14 @@ MEME.MemeEditorView = Backbone.View.extend({
     this.$('#text-align').val(d.textAlign);
     this.$('#text-shadow').prop('checked', d.textShadow);
     this.$('#overlay').find('[value="'+d.overlayColor+'"]').prop('checked', true);
+    //medsos
     this.$('#fbAkun').val(d.fbAkun);
     this.$('#twitAkun').val(d.twitAkun);
     this.$('#instaAkun').val(d.instaAkun);
+    //horisontal setting
+    this.$('#medsos-horizontal').val(d.medsosHorizontal);
+    //vertikal setting
+    this.$('#medsos-vertical').val(d.medsosVertical);
   },
 
   events: {
@@ -93,7 +98,11 @@ MEME.MemeEditorView = Backbone.View.extend({
     'click #size6': 'onSizeTelegram',
     'input #fbAkun': 'onFbAkun',
     'input #twitAkun':'onTwitAkun',
-    'input #instaAkun':'onInstaAkun'
+    'input #instaAkun':'onInstaAkun',
+    //horisontal setting
+    'input #medsos-horizontal':'onMedsosHorizontal',
+   //vertikal setting
+    'input #medsos-vertical':'onMedsosVertical'
   },
 
   onCredit: function() {
@@ -212,6 +221,12 @@ MEME.MemeEditorView = Backbone.View.extend({
   },
  onInstaAkun:function(){
     this.model.set('instaAkun', this.$('#instaAkun').val());
-  }
-  
+  },
+//set posisi
+ onMedsosHorizontal:function(){
+    this.model.set('medsosHorizontal',this.$('#medsos-horizontal').val());
+   },
+ onMedsosVertical:function(){
+    this.model.set('medsosVertical',this.$('#medsos-vertical').val());
+   }  
 });
