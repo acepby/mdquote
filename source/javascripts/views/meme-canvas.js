@@ -130,7 +130,7 @@ MEME.MemeCanvasView = Backbone.View.extend({
       ctx.textAlign = 'left';
       ctx.fillStyle = d.fontColor;
       ctx.font = 'normal '+ d.creditSize +'pt '+ d.fontFamily;
-      ctx.fillText(d.creditText, padding, d.height - padding+20);
+      ctx.fillText(d.creditText, padding*0.5, d.height - padding*0.18);
     }
 
     function renderWatermark(ctx) {
@@ -177,14 +177,55 @@ MEME.MemeCanvasView = Backbone.View.extend({
       ctx.font = 'normal '+ d.fbAkunSize +'pt '+ d.fontFamily;
       ctx.fillText(fbLogo+d.fbAkun+twitLogo+d.twitAkun+instaLogo+d.instaAkun, padding*d.medsosHorizontal, d.height - padding*d.medsosVertical);
     }
-
+    //roundrect 
+    //soure : http://js-bits.blogspot.co.id/2010/07/canvas-rounded-corner-rectangles.html
+    /**
+      	* Draws a rounded rectangle using the current state of the canvas. 
+      	* If you omit the last three params, it will draw a rectangle 
+	* outline with a 5 pixel border radius 
+ 	* @param {CanvasRenderingContext2D} ctx
+ 	* @param {Number} x The top left x coordinate
+ 	* @param {Number} y The top left y coordinate 
+ 	* @param {Number} width The width of the rectangle 
+ 	* @param {Number} height The height of the rectangle
+ 	* @param {Number} radius The corner radius. Defaults to 5;
+ 	* @param {Boolean} fill Whether to fill the rectangle. Defaults to false.
+ 	* @param {Boolean} stroke Whether to stroke the rectangle. Defaults to true.
+ 	*/
+	function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+  		if (typeof stroke == "undefined" ) {
+    			stroke = true;
+  			}
+ 		 if (typeof radius === "undefined") {
+    			radius = 5;
+  			}
+  		ctx.beginPath();
+  		ctx.moveTo(x + radius, y);
+  		ctx.lineTo(x + width - radius, y);
+  		ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+  		ctx.lineTo(x + width, y + height - radius);
+  		ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  		ctx.lineTo(x + radius, y + height);
+  		ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+  		ctx.lineTo(x, y + radius);
+  		ctx.quadraticCurveTo(x, y, x + radius, y);
+  		ctx.closePath();
+  		if (stroke) {
+    			ctx.stroke();
+  			}
+  		if (fill) {
+    			ctx.fill();
+  			}        
+		}
+   //setting rectRound
+     ctx.strokeStyle="rgb(249,225,4)";
     renderBackground(ctx);
     renderOverlay(ctx);
     renderHeadline(ctx);
     renderCredit(ctx);
     renderWatermark(ctx);
     renderFbAkun(ctx);
-
+    roundRect(ctx,padding*0.25,padding*0.25,d.width-padding*0.5,d.height-padding*0.9,20,false,true);
     var data = this.canvas.toDataURL(); //.replace('image/png', 'image/octet-stream');
     this.$('#meme-download').attr({
       'href': data,
