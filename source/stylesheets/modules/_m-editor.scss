@@ -71,6 +71,7 @@ $m: '.m-editor';
         float: left;
         height: 20px;
         line-height: 20px;
+        margin-bottom:5px;
       }
     }
   }
@@ -89,7 +90,8 @@ $m: '.m-editor';
     width: 30px;
 
     &:checked:before {
-      content: 'x';
+      content: '\f00c';
+      font-family:FontAwesome;
       color: white;
       font-size: 18px;
       vertical-align: center;

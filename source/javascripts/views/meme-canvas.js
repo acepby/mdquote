@@ -218,7 +218,8 @@ MEME.MemeCanvasView = Backbone.View.extend({
   			}        
 		}
    //setting rectRound
-     ctx.strokeStyle="rgb(249,225,4)";
+    ctx.strokeStyle="rgb(249,225,4)";
+    
     renderBackground(ctx);
     renderOverlay(ctx);
     renderHeadline(ctx);

@@ -179,7 +179,7 @@ MEME.MemeEditorView = Backbone.View.extend({
   onSizeTwitterChange: function(evt){
     this.model.set('width', 1024);
     this.model.set('height', 512);
-    this.model.set('headlineText',"Write Twitter text here."); 
+    //this.model.set('headlineText',"Write Twitter text here."); 
     evt.preventDefault();
   },
 
@@ -209,7 +209,7 @@ MEME.MemeEditorView = Backbone.View.extend({
  onSizeTelegram: function(evt){
     this.model.set('width',512);
     this.model.set('height',512);
-    this.model.set('headlineText',"Write telegram text here");
+    //this.model.set('headlineText',"Write telegram text here");
     evt.preventDefault();
   },
   
