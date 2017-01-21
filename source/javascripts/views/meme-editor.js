@@ -70,6 +70,8 @@ MEME.MemeEditorView = Backbone.View.extend({
     this.$('#fbAkun').val(d.fbAkun);
     this.$('#twitAkun').val(d.twitAkun);
     this.$('#instaAkun').val(d.instaAkun);
+    this.$('#author').val(d.author);
+    this.$('authorKet').val(d.authorKet);
     //horisontal setting
     this.$('#medsos-horizontal').val(d.medsosHorizontal);
     //vertikal setting
@@ -99,6 +101,8 @@ MEME.MemeEditorView = Backbone.View.extend({
     'input #fbAkun': 'onFbAkun',
     'input #twitAkun':'onTwitAkun',
     'input #instaAkun':'onInstaAkun',
+    'input #author': 'onAuthor',
+    'input #authorKet':'onAuthorKet',
     //horisontal setting
     'input #medsos-horizontal':'onMedsosHorizontal',
    //vertikal setting
@@ -221,6 +225,12 @@ MEME.MemeEditorView = Backbone.View.extend({
   },
  onInstaAkun:function(){
     this.model.set('instaAkun', this.$('#instaAkun').val());
+  },
+ onAuthor:function(){
+    this.model.set('author', this.$('#author').val());
+   },
+ onAuthorKet:function(){
+    this.model.set('authorKet',this.$('#authorKet').val());
   },
 //set posisi
  onMedsosHorizontal:function(){

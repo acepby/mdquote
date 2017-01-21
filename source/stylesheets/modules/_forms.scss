@@ -17,7 +17,20 @@ form {
     margin: 4px 2px;
     cursor: pointer;
   }
-  
+  button:focus {
+    background-color: #cbefc2; /* Green */
+    border: none;
+    color: white;
+    padding-top:10px;
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }  
+
   button {border-radius:5px;}
   select,
   textarea,

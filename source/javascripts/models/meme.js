@@ -35,7 +35,10 @@ MEME.MemeModel = Backbone.Model.extend({
     twitAkun:'',
     instaAkun:'',
     medsosHorizontal:1.6,
-    medsosVertical:0.8
+    medsosVertical:0.8,
+    author:'',
+    authorKet:'',
+    authorSize:12
   },
 
   // Initialize with custom image members used for background and watermark:

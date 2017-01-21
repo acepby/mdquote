@@ -71,10 +71,10 @@ MEME.MemeCanvasView = Backbone.View.extend({
         ctx.restore();
       }
     }
-
+	 
     function renderHeadline(ctx) {
-      var maxWidth = Math.round(d.width * 0.75);
-      var x = padding;
+      var maxWidth = Math.round(d.width * 0.625);
+      var x = padding*2;
       var y = padding;
 
       ctx.font = d.fontSize +'pt '+ d.fontFamily;
@@ -83,18 +83,18 @@ MEME.MemeCanvasView = Backbone.View.extend({
 
       // Text shadow:
       if (d.textShadow) {
-        ctx.shadowColor = "#666";
-        ctx.shadowOffsetX = -2;
+        ctx.shadowColor = "#333";
+        ctx.shadowOffsetX = 1;
         ctx.shadowOffsetY = 1;
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 5;
       }
 
       // Text alignment:
       if (d.textAlign == 'center') {
         ctx.textAlign = 'center';
         x = d.width / 2;
-        y = d.height - d.height / 1.5;
-        maxWidth = d.width - d.width / 3;
+        //y = d.height - d.height / 1.5;
+        maxWidth = Math.round(d.width*0.625);//d.width - d.width / 3;
 
       } else if (d.textAlign == 'right' ) {
         ctx.textAlign = 'right';
@@ -113,6 +113,8 @@ MEME.MemeCanvasView = Backbone.View.extend({
         var testWidth = metrics.width;
 
         if (testWidth > maxWidth && n > 0) {
+          //renderQuoteMark(ctx,x,y);
+          // ctx.font = d.fontSize +'pt '+ d.fontFamily;
           ctx.fillText(line, x, y);
           line = words[n] + ' ';
           y += Math.round(d.fontSize * 1.5);
@@ -120,7 +122,8 @@ MEME.MemeCanvasView = Backbone.View.extend({
           line = testLine;
         }
       }
-
+      //renderQuoteMark(ctx,x,y);
+      //ctx.font = d.fontSize +'pt '+ d.fontFamily;
       ctx.fillText(line, x, y);
       ctx.shadowColor = 'transparent';
     }
@@ -155,28 +158,58 @@ MEME.MemeCanvasView = Backbone.View.extend({
       }
     }
    
-   if(d.fbAkun!=''){
-	var fbLogo='\uf082 ';
-	}else{
-            var fbLogo='';
-       } 
-   if(d.twitAkun!=''){
-        var twitLogo=' \uf081 ';
+   
+    function renderFbAkun(ctx) {
+		var fbLogo,twitLogo,InstaLogo;    	
+    	if(d.fbAkun!=''){
+				fbLogo='\uf082 ';
+			}else{
+            fbLogo='';
+       	} 
+   	if(d.twitAkun!=''){
+        		twitLogo=' \uf081 ';
         }else{
-            var twitLogo='';
+            twitLogo='';
         }
-   if(d.instaAkun!=''){
-        var instaLogo=' \uf16d ';
+   	if(d.instaAkun!=''){
+        		instaLogo=' \uf16d ';
         }else{
              var instaLogo='';
         }
-    function renderFbAkun(ctx) {
       ctx.textBaseline = 'bottom';
       ctx.textAlign = 'left';
       ctx.fillStyle = d.fontColor;
       ctx.font = 'normal '+ d.fbAkunSize +'pt '+ d.fontFamily;
       ctx.fillText(fbLogo+d.fbAkun+twitLogo+d.twitAkun+instaLogo+d.instaAkun, padding*d.medsosHorizontal, d.height - padding*d.medsosVertical);
     }
+//author
+function renderAuthor(ctx) {
+	   var koma;
+	   if(d.authorKet!=''){
+			koma=',';	   
+	   }else {
+	   	koma='';
+	   	}
+	   
+      ctx.textBaseline = 'bottom';
+      ctx.textAlign = 'left';
+      ctx.fillStyle = d.fontColor;
+      ctx.font = 'normal '+ d.authorSize +'pt '+ d.fontFamily;
+      ctx.fillText(d.author+koma+d.authorKet, d.width/2-padding, d.height*0.75+ padding);
+    }
+
+
+//quote marks
+function renderQuoteMark(ctx) {
+      ctx.textBaseline = 'bottom';
+      ctx.textAlign = 'left';
+      ctx.globalAlpha = 0.75;
+      ctx.fillStyle = '#a3a593';
+      ctx.font = 'normal '+ 48 +'pt '+ d.fontFamily;
+      ctx.fillText('\uf10d' ,padding,padding+48);
+    }
+
+
     //roundrect 
     //soure : http://js-bits.blogspot.co.id/2010/07/canvas-rounded-corner-rectangles.html
     /**
@@ -218,15 +251,20 @@ MEME.MemeCanvasView = Backbone.View.extend({
   			}        
 		}
    //setting rectRound
+    //ctx.lineWidth=3;
     ctx.strokeStyle="rgb(249,225,4)";
-    
+
+//render to canvas    
     renderBackground(ctx);
     renderOverlay(ctx);
+    renderQuoteMark(ctx);
     renderHeadline(ctx);
+    renderAuthor(ctx);
     renderCredit(ctx);
     renderWatermark(ctx);
     renderFbAkun(ctx);
     roundRect(ctx,padding*0.25,padding*0.25,d.width-padding*0.5,d.height-padding*0.9,20,false,true);
+    
     var data = this.canvas.toDataURL(); //.replace('image/png', 'image/octet-stream');
     this.$('#meme-download').attr({
       'href': data,
