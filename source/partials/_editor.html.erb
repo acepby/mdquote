@@ -1,39 +1,37 @@
 <form class="m-editor" id="meme-editor-view">
-   <input type="file" id="loadinput"></input>
-  <div class="dropzone" id="dropzone">Drop Image Here</div>
-   <h2><label for="image-scale">Resize image</label></h2>
-  <input id="image-scale" type="range" max="4" min=".01" step=".01" value="1"> 
-  <h2><label for="medsos"> Pilihan Media </label></h2>
+  <h2>
+    <label for="medsos">
+      Pilihan Media
+    </label>
+  </h2>
   <div class="medsos" id="medsos">
-  <button id="size1">Twitter </button>
-  <button id="size2">Facebook Post </button>
-  <button id="size3">Facebook Ad </button>
-  <button id="size4">Facebook Cover </button>
-  <button id="size5">Instagram </button>
-  <button id="size6">Telegram Post</button>
+    <button id="size1">Twitter
+    </button>
+    <button id="size2">Facebook Post
+    </button>
+    <button id="size3">Facebook Ad
+    </button>
+    <button id="size4">Facebook Cover
+    </button>
+    <button id="size5">Instagram
+    </button>
+    <button id="size6">Telegram Post</button>
   </div>
   <div>
-  <h2><label>Akun Media Sosial </label></h2>
-  <div class="medsos">
-  <span class='fa fa-facebook-square fa-2x'></span>
-  <input id='fbAkun' name='fbAkun' type='text' placeholder="akun facebook" value=''>
-  </div>
-  <div class="medsos">
-  <span class='fa fa-twitter-square fa-2x'></span>
-  <input id='twitAkun' name='twitAkun' type='text' placeholder="Akun Twitter" value="">
-  </div>
-  <div class="medsos">
-  <span class='fa fa-instagram fa-2x'></span>
-  <input id='instaAkun' name='instaAkun' type='text' placeholder="Akun Instagram" value="">
-  </div>
-  <h2>Posisi Horisontal</h2>
-  <input id="medsos-horizontal" type='range' max='10' min='-0.03' step='.01'>
-  <h2>Posisi Vertikal</h2>
-  <input id='medsos-vertical' type='range' max='5' min='0.8' step='.01'>
-  </div>
-  <h2><label for="headline">Headline</label></h2>
+ <h2><label>Tambah Gambar Latar</label></h2>
+  <input type="file" id="loadinput"></input>
+</div>
+  <div class="dropzone" id="dropzone">Drop Image Here</div>
+  <h2>
+    <label for="image-scale">Resize image</label>
+  </h2>
+  <input id="image-scale" type="range" max="4" min=".01" step=".01" value="1">
+
+  <h2>
+    <label for="headline">Headline</label>
+  </h2>
   <textarea id="headline" name="headline" type="text" value=""></textarea>
-  
+
   <select class="text-align" id="text-align">
     <option value="" disabled>Select alignment</option>
   </select>
@@ -47,28 +45,61 @@
   </select>
 
   <div class="checkbox-group text-shadow">
-    <input id="text-shadow" name="shadow" type="checkbox"> 
+    <input id="text-shadow" name="shadow" type="checkbox">
     <label for="text-shadow">Text Shadow</label>
   </div>
- 
- <div>
- <label><h2>Author</h2></label>
- <input id='author' name='author' type='text' placeholder="Author's name" value=""> 
- <label><h2>Keterangan</h2></label>
- <input id='authorKet' name='authorKet' type='text' placeholder="Keterangan Author" value=""> 
-</div>
+  <div>
+    <label>
+      <h2>Author</h2>
+    </label>
+    <input id='author' name='author' type='text' placeholder="Author's name" value="">
+    <label>
+      <h2>Keterangan</h2>
+    </label>
+    <input id='authorKet' name='authorKet' type='text' placeholder="Keterangan Author" value="">
+  </div>
+  
+  <div>
+    <h2>
+      <label>Akun Media Sosial
+      </label>
+    </h2>
+    <div class="medsos">
+      <span class='fa fa-facebook-square fa-2x'></span>
+      <input id='fbAkun' name='fbAkun' type='text' placeholder="akun facebook" value=''>
+    </div>
+    <div class="medsos">
+      <span class='fa fa-twitter-square fa-2x'></span>
+      <input id='twitAkun' name='twitAkun' type='text' placeholder="Akun Twitter" value="">
+    </div>
+    <div class="medsos">
+      <span class='fa fa-instagram fa-2x'></span>
+      <input id='instaAkun' name='instaAkun' type='text' placeholder="Akun Instagram" value="">
+    </div>
+    <h2>Posisi Horisontal</h2>
+    <input id="medsos-horizontal" type='range' max='10' min='-0.03' step='.01'>
+    <h2>Posisi Vertikal</h2>
+    <input id='medsos-vertical' type='range' max='5' min='0.8' step='.01'>
+  </div>
+
+
+
 
   <select class="watermark" id="watermark">
     <option value="" disabled>Select a watermark</option>
   </select>
 
-  <h2><label for="credit">Credit</label></h2>
+  <h2>
+    <label for="credit">Credit</label>
+  </h2>
   <input id="credit" name="credit" type="text" value="">
 
   <div class="m-editor__overlay" id="overlay">
     <h2>Overlay Color</h2>
     <ul class="checkbox-group">
-      <li><label><input type="radio" name="overlay" value="">None</label></li>
+      <li>
+        <label><input type="radio" name="overlay" value="">None</label>
+      </li>
     </ul>
   </div>
 </form>

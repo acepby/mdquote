@@ -38,12 +38,12 @@ MEME.MemeCanvasView = Backbone.View.extend({
     var d = this.model.toJSON();
     var ctx = this.canvas.getContext('2d');
     var padding = Math.round(d.width * d.paddingRatio);
-   
+
     // Reset canvas display:
     this.canvas.width = d.width;
     this.canvas.height = d.height;
     ctx.clearRect(0, 0, d.width, d.height);
-   
+
     function renderBackground(ctx) {
       // Base height and width:
       var bh = m.background.height;
@@ -71,12 +71,12 @@ MEME.MemeCanvasView = Backbone.View.extend({
         ctx.restore();
       }
     }
-	 
+
     function renderHeadline(ctx) {
       var maxWidth = Math.round(d.width * 0.625);
       var x = padding*2;
       var y = padding;
-
+      var authY;
       ctx.font = d.fontSize +'pt '+ d.fontFamily;
       ctx.fillStyle = d.fontColor;
       ctx.textBaseline = 'top';
@@ -111,21 +111,33 @@ MEME.MemeCanvasView = Backbone.View.extend({
         var testLine  = line + words[n] + ' ';
         var metrics   = ctx.measureText( testLine );
         var testWidth = metrics.width;
-
+        //console.log(y);
         if (testWidth > maxWidth && n > 0) {
           //renderQuoteMark(ctx,x,y);
           // ctx.font = d.fontSize +'pt '+ d.fontFamily;
           ctx.fillText(line, x, y);
           line = words[n] + ' ';
-          y += Math.round(d.fontSize * 1.5);
+          y += Math.round(d.fontSize * 2);
+          authY=y;
         } else {
           line = testLine;
+          authY =y+d.fontSize*2;
+          //console.log("y sebaris: "+y +authY);
         }
+
+        if (n==words.length-1) {
+            authY =y+d.fontSize*3;
+            console.log("akhir kata :"+authY);
+          }
       }
+
       //renderQuoteMark(ctx,x,y);
       //ctx.font = d.fontSize +'pt '+ d.fontFamily;
       ctx.fillText(line, x, y);
+      //console.log(y);
+      //console.log(authY);
       ctx.shadowColor = 'transparent';
+      renderAuthor(ctx,x,authY);
     }
 
     function renderCredit(ctx) {
@@ -157,15 +169,15 @@ MEME.MemeCanvasView = Backbone.View.extend({
         ctx.globalAlpha = 1;
       }
     }
-   
-   
+
+
     function renderFbAkun(ctx) {
-		var fbLogo,twitLogo,InstaLogo;    	
+		var fbLogo,twitLogo,InstaLogo;
     	if(d.fbAkun!=''){
 				fbLogo='\uf082 ';
 			}else{
             fbLogo='';
-       	} 
+       	}
    	if(d.twitAkun!=''){
         		twitLogo=' \uf081 ';
         }else{
@@ -183,19 +195,21 @@ MEME.MemeCanvasView = Backbone.View.extend({
       ctx.fillText(fbLogo+d.fbAkun+twitLogo+d.twitAkun+instaLogo+d.instaAkun, padding*d.medsosHorizontal, d.height - padding*d.medsosVertical);
     }
 //author
-function renderAuthor(ctx) {
-	   var koma;
+function renderAuthor(ctx,x,authY) {
+	   var koma,dash;
 	   if(d.authorKet!=''){
-			koma=',';	   
+			koma=' , ';
+      dash='-- ';
 	   }else {
 	   	koma='';
+       dash='';
 	   	}
-	   
+
       ctx.textBaseline = 'bottom';
       ctx.textAlign = 'left';
       ctx.fillStyle = d.fontColor;
       ctx.font = 'normal '+ d.authorSize +'pt '+ d.fontFamily;
-      ctx.fillText(d.author+koma+d.authorKet, d.width/2-padding, d.height*0.75+ padding);
+      ctx.fillText(dash+d.author+koma+d.authorKet, x, authY);
     }
 
 
@@ -210,16 +224,16 @@ function renderQuoteMark(ctx) {
     }
 
 
-    //roundrect 
+    //roundrect
     //soure : http://js-bits.blogspot.co.id/2010/07/canvas-rounded-corner-rectangles.html
     /**
-      	* Draws a rounded rectangle using the current state of the canvas. 
-      	* If you omit the last three params, it will draw a rectangle 
-	* outline with a 5 pixel border radius 
+      	* Draws a rounded rectangle using the current state of the canvas.
+      	* If you omit the last three params, it will draw a rectangle
+	* outline with a 5 pixel border radius
  	* @param {CanvasRenderingContext2D} ctx
  	* @param {Number} x The top left x coordinate
- 	* @param {Number} y The top left y coordinate 
- 	* @param {Number} width The width of the rectangle 
+ 	* @param {Number} y The top left y coordinate
+ 	* @param {Number} width The width of the rectangle
  	* @param {Number} height The height of the rectangle
  	* @param {Number} radius The corner radius. Defaults to 5;
  	* @param {Boolean} fill Whether to fill the rectangle. Defaults to false.
@@ -248,23 +262,23 @@ function renderQuoteMark(ctx) {
   			}
   		if (fill) {
     			ctx.fill();
-  			}        
+  			}
 		}
    //setting rectRound
     //ctx.lineWidth=3;
     ctx.strokeStyle="rgb(249,225,4)";
 
-//render to canvas    
+//render to canvas
     renderBackground(ctx);
     renderOverlay(ctx);
     renderQuoteMark(ctx);
     renderHeadline(ctx);
-    renderAuthor(ctx);
+    //renderAuthor(ctx);
     renderCredit(ctx);
     renderWatermark(ctx);
     renderFbAkun(ctx);
     roundRect(ctx,padding*0.25,padding*0.25,d.width-padding*0.5,d.height-padding*0.9,20,false,true);
-    
+
     var data = this.canvas.toDataURL(); //.replace('image/png', 'image/octet-stream');
     this.$('#meme-download').attr({
       'href': data,
