@@ -133,11 +133,11 @@ MEME.MemeCanvasView = Backbone.View.extend({
 
 if (numLines==1) {
   if(x==padding*2){
-    quotX=x;
+    quotX=x-padding*0.25;
   }else if (x==d.width/2) {
     quotX=x - testWidth/2;
   }else {
-    quotX=d.width - testWidth;
+    quotX=d.width - (testWidth+padding*0.25);
   }
 }
         if (n==words.length-1) {
@@ -153,6 +153,7 @@ if (numLines==1) {
       ctx.fillStyle = d.fontColor;
       ctx.textBaseline = 'top';
       ctx.fillText(line, x, y);
+      //renderQuoteMark(ctx,quotX,padding);
       console.log("baris :" +n);
       console.log("x :" +x);
       console.log("testWidth :" +testWidth);
@@ -238,7 +239,7 @@ function renderQuoteMark(ctx,x,y) {
       //ctx.textBaseline = 'bottom';
       //ctx.textAlign = 'right';
       ctx.globalAlpha = 0.75;
-      ctx.fillStyle = '#a3a593';
+      ctx.fillStyle = '#919191';
       ctx.font = 'normal '+ 48 +'pt '+ d.fontFamily;
       ctx.fillText('\uf10e' ,x-padding*0.625,y-30);
     }
@@ -291,7 +292,7 @@ function renderQuoteMark(ctx,x,y) {
 //render to canvas
     renderBackground(ctx);
     renderOverlay(ctx);
-    renderQuoteMark(ctx);
+    //renderQuoteMark(ctx);
     renderHeadline(ctx);
     //renderAuthor(ctx);
     renderCredit(ctx);
