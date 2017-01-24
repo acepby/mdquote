@@ -76,7 +76,10 @@ MEME.MemeCanvasView = Backbone.View.extend({
       var maxWidth = Math.round(d.width * 0.625);
       var x = padding*2;
       var y = padding;
+      //var qoutY=y;
       var authY;
+      var quotX = x;
+      //var testWidth;
       ctx.font = d.fontSize +'pt '+ d.fontFamily;
       ctx.fillStyle = d.fontColor;
       ctx.textBaseline = 'top';
@@ -93,12 +96,14 @@ MEME.MemeCanvasView = Backbone.View.extend({
       if (d.textAlign == 'center') {
         ctx.textAlign = 'center';
         x = d.width / 2;
+        //quotX= x - padding*3;
         //y = d.height - d.height / 1.5;
         maxWidth = Math.round(d.width*0.625);//d.width - d.width / 3;
 
       } else if (d.textAlign == 'right' ) {
         ctx.textAlign = 'right';
         x = d.width - padding;
+        //quotX=d.width - testWidth;
 
       } else {
         ctx.textAlign = 'left';
@@ -106,7 +111,7 @@ MEME.MemeCanvasView = Backbone.View.extend({
 
       var words = d.headlineText.split(' ');
       var line  = '';
-
+      var numLines = 1;
       for (var n = 0; n < words.length; n++) {
         var testLine  = line + words[n] + ' ';
         var metrics   = ctx.measureText( testLine );
@@ -119,23 +124,38 @@ MEME.MemeCanvasView = Backbone.View.extend({
           line = words[n] + ' ';
           y += Math.round(d.fontSize * 2);
           authY=y;
+          numLines++;
         } else {
           line = testLine;
           authY =y+d.fontSize*2;
           //console.log("y sebaris: "+y +authY);
         }
 
+if (numLines==1) {
+  if(x==padding*2){
+    quotX=x;
+  }else if (x==d.width/2) {
+    quotX=x - testWidth/2;
+  }else {
+    quotX=d.width - testWidth;
+  }
+}
         if (n==words.length-1) {
             authY =y+d.fontSize*3;
-            console.log("akhir kata :"+authY);
+
+
+            //console.log("akhir kata :"+authY);
           }
       }
 
-      //renderQuoteMark(ctx,x,y);
-      //ctx.font = d.fontSize +'pt '+ d.fontFamily;
+      renderQuoteMark(ctx,quotX,padding);
+      ctx.font = d.fontSize +'pt '+ d.fontFamily;
+      ctx.fillStyle = d.fontColor;
+      ctx.textBaseline = 'top';
       ctx.fillText(line, x, y);
-      //console.log(y);
-      //console.log(authY);
+      console.log("baris :" +n);
+      console.log("x :" +x);
+      console.log("testWidth :" +testWidth);
       ctx.shadowColor = 'transparent';
       renderAuthor(ctx,x,authY);
     }
@@ -206,7 +226,7 @@ function renderAuthor(ctx,x,authY) {
 	   	}
 
       ctx.textBaseline = 'bottom';
-      ctx.textAlign = 'left';
+      //ctx.textAlign = 'left';
       ctx.fillStyle = d.fontColor;
       ctx.font = 'normal '+ d.authorSize +'pt '+ d.fontFamily;
       ctx.fillText(dash+d.author+koma+d.authorKet, x, authY);
@@ -214,13 +234,13 @@ function renderAuthor(ctx,x,authY) {
 
 
 //quote marks
-function renderQuoteMark(ctx) {
-      ctx.textBaseline = 'bottom';
-      ctx.textAlign = 'left';
+function renderQuoteMark(ctx,x,y) {
+      //ctx.textBaseline = 'bottom';
+      //ctx.textAlign = 'right';
       ctx.globalAlpha = 0.75;
       ctx.fillStyle = '#a3a593';
       ctx.font = 'normal '+ 48 +'pt '+ d.fontFamily;
-      ctx.fillText('\uf10d' ,padding,padding+48);
+      ctx.fillText('\uf10e' ,x-padding*0.625,y-30);
     }
 
 
