@@ -133,7 +133,7 @@ MEME.MemeCanvasView = Backbone.View.extend({
 
 if (numLines==1) {
   if(x==padding*2){
-    quotX=x-padding*0.25;
+    quotX=x-padding*0.45;
   }else if (x==d.width/2) {
     quotX=x - testWidth/2;
   }else {

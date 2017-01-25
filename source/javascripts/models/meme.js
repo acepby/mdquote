@@ -6,7 +6,7 @@ MEME.MemeModel = Backbone.Model.extend({
   defaults: {
     backgroundPosition: { x: null, y: null },
     creditText: 'Source:',
-    creditSize: 12,
+    creditSize: 11,
     downloadName: 'share',
     fontColor: 'white',
     fontFamily: 'Helvetica Neue',
@@ -38,7 +38,7 @@ MEME.MemeModel = Backbone.Model.extend({
     medsosVertical:0.8,
     author:'',
     authorKet:'',
-    authorSize:13
+    authorSize:12
   },
 
   // Initialize with custom image members used for background and watermark:
