@@ -148,7 +148,7 @@ if (numLines==1) {
           }
       }
 
-      renderQuoteMark(ctx,quotX,padding);
+
       ctx.font = d.fontSize +'pt '+ d.fontFamily;
       ctx.fillStyle = d.fontColor;
       ctx.textBaseline = 'top';
@@ -158,6 +158,7 @@ if (numLines==1) {
       console.log("x :" +x);
       console.log("testWidth :" +testWidth);
       ctx.shadowColor = 'transparent';
+      renderQuoteMark(ctx,quotX,padding);
       renderAuthor(ctx,x,authY);
     }
 
@@ -240,7 +241,7 @@ function renderQuoteMark(ctx,x,y) {
       //ctx.textAlign = 'right';
       ctx.globalAlpha = 0.75;
       ctx.fillStyle = '#919191';
-      ctx.font = 'normal '+ 48 +'pt '+ d.fontFamily;
+      ctx.font = 'normal '+ 36 +'pt '+ d.fontFamily;
       ctx.fillText('\uf10e' ,x-padding*0.625,y-30);
     }
 
