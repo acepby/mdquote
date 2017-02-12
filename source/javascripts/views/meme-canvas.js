@@ -60,7 +60,12 @@ MEME.MemeCanvasView = Backbone.View.extend({
         ctx.drawImage(m.background, 0, 0, bw, bh, cx-(tw/2), cy-(th/2), tw, th);
       }
     }
-
+    function solidBackground(ctx){
+        ctx.save();
+        ctx.fillStyle='#ffffff';
+        ctx.fillRect(0,0,d.width,d.height);
+        ctx.restore();
+    }
     function renderOverlay(ctx) {
       if (d.overlayColor) {
         ctx.save();
@@ -291,6 +296,7 @@ function renderQuoteMark(ctx,x,y) {
     ctx.strokeStyle="rgb(249,225,4)";
 
 //render to canvas
+    solidBackground(ctx);
     renderBackground(ctx);
     renderOverlay(ctx);
     //renderQuoteMark(ctx);
